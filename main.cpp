@@ -1,10 +1,29 @@
-#include <iostream>
-#include <vector>
 #include <cmath>
+#include <iostream>
+#include <utility>
+#include <vector>
 #include <string>
 
-class Tile
+enum class Type{
+    None = 0,Fire = 1 ,Water = 2,Earth = 3,Wind = 4
+};
+
+std::ostream& operator << (std::ostream& os, const Type& obj)
 {
+    if(Type::Fire == obj)
+        os<<"Fire";
+    if(Type::None == obj)
+        os<<"None";
+    if(Type::Water == obj)
+        os<<"Water";
+    if(Type::Earth == obj)
+        os<<"Earth";
+    if(Type::Wind == obj)
+        os<<"Wind";
+    return os;
+}
+
+class Tile{
     int type;
     bool isPlayer_on;
     bool Walkable;
@@ -15,6 +34,16 @@ public:
                                                                                           isPlayer_on(isPlayerOn_),
                                                                                           Walkable(walkable_),
                                                                                           Coordinates(Coordinates_) {}
+    Tile(const Tile& other) = default;
+
+    Tile& operator=(const Tile & other) = default;
+
+    friend std::ostream& operator<<(std::ostream& os, const Tile& tile_){
+        os << "Tip: " << tile_.type << " Walkable " << tile_.Walkable << " Pozitia: (" << tile_.Coordinates[0] << ","<< tile_.Coordinates[1]<< ") ";
+        return os;
+    }
+
+
 
     void setType(int type_) {
         Tile::type = type_;
@@ -32,19 +61,19 @@ public:
         Coordinates = Coordinates_;
     }
 
-    int getType() const {
+    [[nodiscard]] int getType() const {
         return type;
     }
 
-    bool isPlayerOn() const {
+    [[nodiscard]] bool isPlayerOn() const {
         return isPlayer_on;
     }
 
-    bool isWalkable() const {
+    [[nodiscard]] bool isWalkable() const {
         return Walkable;
     }
 
-    const std::vector<int> &getCoordinates() const {
+    [[nodiscard]] const std::vector<int> &getCoordinates() const {
         return Coordinates;
     }
 
@@ -60,21 +89,91 @@ public:
     }
 
 
-    ~Tile() {
+    ~Tile(){
+        std::cout<<"Tile Destroyed";
+    }
+
+
+};
+
+class Spell{
+    int damage;
+    Type type;
+    std::string name;
+    std::string description;
+public:
+
+    explicit Spell(int damage_ = 0, Type type_ = Type::None, std::string name_ = "", std::string description_ = "") : damage(damage_), type(type_),
+                                                                                                                                name(std::move(name_)),
+                                                                                                                                description(std::move(description_)) {}
+
+    Spell (const Spell &other) = default;
+
+    Spell& operator=(const Spell & other) = default;
+
+    friend std::ostream& operator<<(std::ostream& os,const Spell& spell_)
+    {
+        os << "Spell type: " << spell_.type << " Spell damage: "<< spell_.damage << " ";
+    }
+
+    void setDamage(int damage_) {
+        Spell::damage = damage_;
+    }
+
+    void setType(Type type_) {
+        Spell::type = type_;
+    }
+
+    void setName(const std::string &name_) {
+        Spell::name = name_;
+    }
+
+    void setDescription(const std::string &description_) {
+        Spell::description = description_;
+    }
+
+    [[nodiscard]] int getDamage() const {
+        return damage;
+    }
+
+    [[nodiscard]] Type getType() const {
+        return type;
+    }
+
+    [[nodiscard]] const std::string &getName() const {
+        return name;
+    }
+
+    [[nodiscard]] const std::string &getDescription() const {
+        return description;
+    }
+
+    bool operator==(const Spell &rhs) const {
+        return damage == rhs.damage &&
+               type == rhs.type &&
+               name == rhs.name &&
+               description == rhs.description;
+    }
+
+    bool operator!=(const Spell &rhs) const {
+        return !(rhs == *this);
     }
 
 };
 
-class Enemy
-{
+class Enemy{
     int hp;
     bool isTurn;
     int baseDamage;
-    int type;
+    Type type;
+    std::vector <Spell> spell;
 public:
-    
-    explicit Enemy(int hp_ = 0, bool isTurn_ = false, int baseDamage_ = 0, int type_ = 0) : hp(hp_), isTurn(isTurn_), baseDamage(baseDamage_), type(type_) {}
 
+    explicit Enemy(int hp_ = 0, bool isTurn_ = false, int baseDamage_ = 0, Type type_ = Type::None, const std::vector<Spell> &spell_ = {}) :hp(hp_), isTurn(isTurn_),
+                                                                                              baseDamage(baseDamage_),
+                                                                                              type(type_),
+                                                                                              spell(spell_) {}
+                                                                                              
 
     void setHp(int hp_) {
         Enemy::hp = hp_;
@@ -88,53 +187,68 @@ public:
         Enemy::baseDamage = baseDamage_;
     }
 
-    void setType(int type_) {
+    void setType(Type type_) {
         Enemy::type = type_;
     }
 
-    int getHp() const {
+    void  addSpell(const Spell& spell_){
+        Enemy::spell.push_back(spell_);
+    }
+
+    void removeSpell(const Spell &spell_){
+        for(auto it = spell.begin(); it != spell.end();){
+            if(*it == spell_){
+                it = spell.erase(it);
+                break;
+            }
+        }
+    }
+
+    [[nodiscard]] int getHp() const {
         return hp;
     }
 
-    bool isTurn1() const {
+    [[nodiscard]] bool isTurn1() const {
         return isTurn;
     }
 
-    int getBaseDamage() const {
+    [[nodiscard]] int getBaseDamage() const {
         return baseDamage;
     }
 
-    int getType() const {
+    [[nodiscard]] Type getType() const {
         return type;
     }
 
-    ~Enemy()
-        {
+    [[nodiscard]] int getSpells() const {
+        return (int)spell.size();
+    }
 
-        }
+    ~Enemy() {
+        std::cout<<"Disctructor apelat pentru clasa Enemy";
+    };
 };
 
-class Weapon
-{
+class Weapon{
     float damageMultiplier;
-    int type;
+    Type type;
 public:
     
-    explicit Weapon(float damageMultiplier_ = 0, int type_ = 0) : damageMultiplier(damageMultiplier_), type(type_) {}
+    explicit Weapon(float damageMultiplier_ = 0, Type type_ = Type::None) : damageMultiplier(damageMultiplier_), type(type_) {}
 
     void setdamageMultiplier(float damageMultiplier_) {
         Weapon::damageMultiplier = damageMultiplier_;
     }
 
-    void setType(int type_) {
+    void setType(Type type_) {
         Weapon::type = type_;
     }
 
-    float getdamageMultiplier() const {
+    [[nodiscard]] float getdamageMultiplier() const {
         return damageMultiplier;
     }
 
-    int getType() const {
+    [[nodiscard]] Type getType() const {
         return type;
     }
 
@@ -147,25 +261,22 @@ public:
         return !(rhs == *this);
     }
 
-    ~Weapon() {
-
-    }
+    ~Weapon() = default;
 };
 
-class Player
-{
+class Player{
     std::string name;
     int hp;
     float baseDamage;
     int Damage;
     float movementSpeed;
-    int type;
+    Type type;
     Weapon* weapon;
     std::vector<int> Position;
     bool isTurn = false;
 public:
-    explicit Player(const std::string &name_ = "", int hp_ = 0, float baseDamage_ = 0, int damage_ = 0, float movementSpeed_ = 0, int type_ = 0, Weapon *weapon_ = nullptr,
-           const std::vector<int> &Position_ = {0,0}, bool isTurn_ = 0) : name(name_), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
+    explicit Player(std::string name_ = "", int hp_ = 0, float baseDamage_ = 0, int damage_ = 0, float movementSpeed_ = 0, Type type_ = Type::None, Weapon *weapon_ = nullptr,
+           const std::vector<int> &Position_ = {0,0}, bool isTurn_ = false) : name(std::move(name_)), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
                                                            movementSpeed(movementSpeed_), type(type_), weapon(weapon_),
                                                            Position(Position_), isTurn(isTurn_) {}
 
@@ -183,19 +294,19 @@ public:
 
     void setDamage(){
         float weaponDamage = weapon->getdamageMultiplier();
-        Player::Damage = (int) floor( baseDamage *  weaponDamage);
+        Player::Damage = (int) std::floor( baseDamage *  weaponDamage);
     }
 
     void setMovementSpeed(float movementSpeed_) {
         Player::movementSpeed = movementSpeed_;
     }
 
-    void setType(int type_) {
+    void setType(Type type_) {
         Player::type = type_;
     }
 
-    void setWeapon(Weapon *weapon) {
-        Player::weapon = weapon;
+    void setWeapon(Weapon *weapon_) {
+        Player::weapon = weapon_;
     }
 
     void setPosition(const std::vector<int> &Position_) {
@@ -206,81 +317,53 @@ public:
         Player::isTurn = isTurn_;
     }
 
-    const std::string &getName() const {
+    [[nodiscard]] const std::string &getName() const {
         return name;
     }
 
-    int getHp() const {
+    [[nodiscard]] int getHp() const {
         return hp;
     }
 
-    float getBaseDamage() const {
+    [[nodiscard]] float getBaseDamage() const {
         return baseDamage;
     }
 
-    int getDamage() const{
+    [[nodiscard]] int getDamage() const{
         return Damage;
     }
 
-    float getMovementSpeed() const {
+    [[nodiscard]] float getMovementSpeed() const {
         return movementSpeed;
     }
 
-    int getType() const {
+    [[nodiscard]] Type getType() const {
         return type;
     }
 
-    Weapon *getWeapon() const {
+    [[nodiscard]] Weapon *getWeapon() const {
         return weapon;
     }
 
-    const std::vector<int> &getPosition() const {
+    [[nodiscard]] const std::vector<int> &getPosition() const {
         return Position;
     }
 
-    bool isTurn1() const {
+    [[nodiscard]] bool isTurn1() const {
         return isTurn;
     }
 
-    bool operator==(const Player &rhs) const {
-        return hp == rhs.hp &&
-               baseDamage == rhs.baseDamage &&
-               Damage == rhs.Damage &&
-               movementSpeed == rhs.movementSpeed &&
-               type == rhs.type &&
-               weapon == rhs.weapon &&
-               Position == rhs.Position &&
-               isTurn == rhs.isTurn;
-    }
-
-    bool operator!=(const Player &rhs) const {
-        return !(rhs == *this);
-    }
-
     friend std::ostream& operator<<(std::ostream& os, const Player& player_){
-        os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage << " Pozitia: (" << player_.Position[0] << ","<< player_.Position[1]<< ") ";
-        if(player_.type == 1)
-        {
-            os<<"Type: Fire";
-        }
-        if(player_.type == 2)
-        {
-            os<<"Type: Wind";
-        }
-        if(player_.type == 3)
-        {
-            os<<"Type: Earth";
-        }
-        if(player_.type == 4)
-        {
-            os<<"Type: Water";
-        }
+        os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage << " Pozitia: (" << player_.Position[0] << ","<< player_.Position[1]<< ") "<<player_.type;
         return os;
+        }
+
+    void moveRight()
+    {
+
     }
 
-    ~Player() {
-
-    }
+    ~Player() = default;
 
 };
 
@@ -296,8 +379,8 @@ Tile ** generateMap(int size){
     {
         for(j=0;j<size;j++)
         {
-            map[i][j].setIsPlayerOn(0);
-            map[i][j].setWalkable(0);
+            map[i][j].setIsPlayerOn(false);
+            map[i][j].setWalkable(false);
             map[i][j].setType(0);
             map[i][j].setCoordinates({i,j});
         }
@@ -318,7 +401,7 @@ void consoleMap(Tile** map,int size){
 }
 
 int main() {
-    Tile** map;
+    /*Tile** map;
     int mapSize = 10;
     Weapon w(10,5);
     Player p("nume",100,100,0,100,1,&w,{0,1},true);
@@ -327,6 +410,28 @@ int main() {
 
     map = generateMap(mapSize);
     consoleMap(map,mapSize);
+
+    Tile t1(1,true,true,{0,0});
+    Tile t2;
+
+    t2 = t1;
+    std::cout<<t2;
+    std::cout<<t1;
+
+    */
+    Spell s1(100,Type::Fire,"","");
+
+    Enemy e;
+
+    e.addSpell(s1);
+
+    std::cout<<e.getSpells();
+
+    e.removeSpell(s1);
+
+    std::cout<<e.getSpells();
+
+    std::cout<<s1;
 
     return 0;
 }
