@@ -159,6 +159,11 @@ public:
         return !(rhs == *this);
     }
 
+    ~Spell()
+    {
+        std::cout<<"Distructor Spell";
+    }
+
 };
 
 class Enemy{
@@ -173,7 +178,10 @@ public:
                                                                                               baseDamage(baseDamage_),
                                                                                               type(type_),
                                                                                               spell(spell_) {}
-                                                                                              
+
+    Enemy(const Enemy& other) = default;
+
+    Enemy& operator=(const Enemy & other) = default;
 
     void setHp(int hp_) {
         Enemy::hp = hp_;
@@ -278,7 +286,13 @@ public:
     explicit Player(std::string name_ = "", int hp_ = 0, float baseDamage_ = 0, int damage_ = 0, float movementSpeed_ = 0, Type type_ = Type::None, Weapon *weapon_ = nullptr,
            const std::vector<int> &Position_ = {0,0}, bool isTurn_ = false) : name(std::move(name_)), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
                                                            movementSpeed(movementSpeed_), type(type_), weapon(weapon_),
-                                                           Position(Position_), isTurn(isTurn_) {}
+                                                           Position(Position_), isTurn(isTurn_) {
+        setDamage();
+    }
+
+    Player(const Player& other) = default;
+
+    Player& operator=(const Player & other) = default;
 
     void setName(const std::string &name_) {
         Player::name = name_;
@@ -401,11 +415,11 @@ void consoleMap(Tile** map,int size){
 }
 
 int main() {
-    /*Tile** map;
+    Tile** map;
     int mapSize = 10;
-    Weapon w(10,5);
-    Player p("nume",100,100,0,100,1,&w,{0,1},true);
-    p.setDamage();
+    Weapon w(10,Type::None);
+    Player p("nume",100,100,0,100,Type::None,&w,{0,1},true);
+
     std::cout<<p;
 
     map = generateMap(mapSize);
@@ -418,7 +432,7 @@ int main() {
     std::cout<<t2;
     std::cout<<t1;
 
-    */
+
     Spell s1(100,Type::Fire,"","");
 
     Enemy e;
