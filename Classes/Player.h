@@ -5,38 +5,45 @@
 #include "Weapon.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 
-class Player {
+class Player : public sf::Drawable, sf::Transformable {
     std::string name;
     sf::Sprite sprite;
     sf::Texture texture;
+    sf::Transform newTrans;
     int hp;
     float baseDamage;
     int Damage;
     float movementSpeed;
     Type type;
-    Weapon* weapon;
+    //Weapon *weapon;
     bool isTurn = false;
+
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const{
+        states.transform = newTrans;
+        target.draw(sprite, states);
+}
+
+    void move(int x, int y);
+
 public:
-    explicit Player(std::string name_ = "", int hp_ = 100, float baseDamage_ = 100, int damage_ = 0, float movementSpeed_ = 0, Type type_ = Type::None, Weapon *weapon_ = nullptr,
+    /*explicit Player(std::string name_ = "", int hp_ = 100, float baseDamage_ = 100, int damage_ = 0, float movementSpeed_ = 0, Type type_ = Type::None, Weapon *weapon_ = nullptr,
                      bool isTurn_ = false) : name(std::move(name_)), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
                                                                                        movementSpeed(movementSpeed_), type(type_), weapon(weapon_),
                                                                                         isTurn(isTurn_) {
         setSprite();
         setDamage();
-    }
+    }*/
 
-    const sf::Sprite &getSprite() const {
-        return sprite;
-    }
+    void movement();
 
-    void setSprite() {
-        if (!texture.loadFromFile("/Assets/Player.png"))
-        {
-            std::cout<<"Erorr";
-        }
-        sprite.setTexture(texture);
-    }
+    void setSprite();
+
+    Player();
 
     Player(const Player& other) = default;
 
@@ -54,10 +61,10 @@ public:
         Player::baseDamage = baseDamage_;
     }
 
-    void setDamage(){
+    /*void setDamage(){
         float weaponDamage = weapon->getdamageMultiplier();
         Player::Damage = (int) std::floor( baseDamage *  weaponDamage);
-    }
+    }*/
 
     void setMovementSpeed(float movementSpeed_) {
         Player::movementSpeed = movementSpeed_;
@@ -65,10 +72,6 @@ public:
 
     void setType(Type type_) {
         Player::type = type_;
-    }
-
-    void setWeapon(Weapon *weapon_) {
-        Player::weapon = weapon_;
     }
 
     void setIsTurn(bool isTurn_) {
@@ -99,18 +102,14 @@ public:
         return type;
     }
 
-    [[nodiscard]] Weapon *getWeapon() const {
-        return weapon;
-    }
-
     [[nodiscard]] bool isTurn1() const {
         return isTurn;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Player& player_){
+    /*friend std::ostream& operator<<(std::ostream& os, const Player& player_){
         os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage<<player_.type;
         return os;
-    }
+    }*/
 
     ~Player() = default;
 

@@ -26,24 +26,20 @@ private:
                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             };
 
-    Tileset worldTileset;
+    Tileset worldTileset ;
 
     sf::Event ev;
 
-    Player* player;
 
-    void initVariables();
-    void initWindow();
+    Player* player;
 
 public:
 
-    ///Constructor Deconstractor
     Game();
+
     virtual ~Game();
 
-    ///Functions
-
-    bool getisWindowOpen();
+    void play();
 
     void pollEvent();
 

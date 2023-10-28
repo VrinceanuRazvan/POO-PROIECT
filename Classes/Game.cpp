@@ -2,33 +2,29 @@
 ///Constructor Deconstractor
 
 Game::Game() {
-    initVariables();
-    initWindow();
+
+    player = new Player();
+
+    videoMode.width = 1280;
+    videoMode.height = 768;
+    window = new sf::RenderWindow(videoMode,"Game",sf::Style::Titlebar | sf::Style::Close);
+
+    if (!worldTileset.load("Assets/Grass.jpg", sf::Vector2u(64, 64), World, 20, 12))
+    {
+        std::cout<<"Erorr";
+    }
 }
 
 Game::~Game() {
     delete window;
 }
 
-void Game::initVariables() {
-    window = nullptr;
-    player = new Player;
-    worldTileset.load("Assets/Grass.jpg", sf::Vector2u(64, 64), World, 20, 12);
-}
-
-void Game::initWindow() {
-    videoMode.width = 1280;
-    videoMode.height = 768;
-    window = new sf::RenderWindow(videoMode,"Game",sf::Style::Titlebar| sf::Style::Close);
-}
-
-
-
 ///Functions
 
 void Game::pollEvent() {
     while(this->window->pollEvent(this->ev))
     {
+
         switch (this->ev.type)
         {
             case sf::Event::Closed:
@@ -36,6 +32,7 @@ void Game::pollEvent() {
                 break;
 
             case sf::Event::KeyPressed:
+                player->movement();
                 if(this->ev.key.code == sf::Keyboard::Escape)
                 {
                     this->window->close();
@@ -46,6 +43,15 @@ void Game::pollEvent() {
     }
 }
 
+void Game::play(){
+    while(window->isOpen())
+    {
+        update();
+
+        render();
+    }
+}
+
 void Game::update() {
     this->pollEvent();
 }
@@ -53,10 +59,6 @@ void Game::update() {
 void Game::render() {
     window->clear();
     window->draw(worldTileset);
-    window->draw(player->getSprite());
+    window->draw(*player);
     window->display();
-}
-
-bool Game::getisWindowOpen() {
-    return this->window->isOpen();
 }

@@ -7,7 +7,7 @@ enum class Type{
     None = 0,Fire = 1 ,Water = 2,Earth = 3,Wind = 4
 };
 
-std::ostream& operator << (std::ostream& os, const Type& obj)
+/*std::ostream& operator<< (std::ostream& os, const Type& obj)
 {
     if(Type::Fire == obj)
         os<<"Fire";
@@ -20,6 +20,6 @@ std::ostream& operator << (std::ostream& os, const Type& obj)
     if(Type::Wind == obj)
         os<<"Wind";
     return os;
-}
+}*/
 
 #endif //OOP_TYPE_H
