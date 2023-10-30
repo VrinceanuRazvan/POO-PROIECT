@@ -1,6 +1,8 @@
 #ifndef OOP_TILESET_H
 #define OOP_TILESET_H
 
+///Cod de pe formul SFML
+
 #include <SFML/Graphics.hpp>
 
 class Tileset : public sf::Drawable, public sf::Transformable {

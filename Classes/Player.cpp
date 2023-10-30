@@ -32,12 +32,25 @@ Player::Player() {
     setDamage();
 }
 
-Player::Player(const Player &other) {
+Player::Player(const Player &other): name(other.name),sprite(other.sprite),texture(other.texture),hp(other.hp),baseDamage(other.baseDamage),Damage(other.Damage),
+movementSpeed(other.movementSpeed),type(other.type), weapon(other.weapon),isTurn(other.isTurn){
+
     std::cout<<"Constructor de copiere pentru clasa Player";
 }
 
 Player &Player::operator=(const Player &other) {
+    name = other.name;
+    sprite = other.sprite;
+    texture = other.texture;
+    hp = other.hp;
+    baseDamage = other.baseDamage;
+    Damage = other.Damage;
+    movementSpeed = other.movementSpeed;
+    type = other.type;
+    weapon = other.weapon;
+    isTurn = other.isTurn;
     std::cout<<"Operator = pentru clasa Player";
+    return *this;
 }
 
 Player::~Player() {
