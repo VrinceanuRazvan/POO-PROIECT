@@ -7,71 +7,43 @@ class Enemy{
     int hp;
     bool isTurn;
     int baseDamage;
-    Type type;
+    ElementalType type;
     std::vector <Spell> spell;
 public:
 
-    explicit Enemy(int hp_ = 0, bool isTurn_ = false, int baseDamage_ = 0, Type type_ = Type::None, const std::vector<Spell> &spell_ = {}) :hp(hp_), isTurn(isTurn_),
+    explicit Enemy(int hp_ = 0, bool isTurn_ = false, int baseDamage_ = 0, ElementalType type_ = ElementalType::None, const std::vector<Spell> &spell_ = {}) :hp(hp_), isTurn(isTurn_),
                                                                                                                                             baseDamage(baseDamage_),
                                                                                                                                             type(type_),
                                                                                                                                             spell(spell_) {}
 
-    Enemy(const Enemy& other) = default;
+    ~Enemy();
 
-    Enemy& operator=(const Enemy & other) = default;
+    Enemy(const Enemy&);
 
-    void setHp(int hp_) {
-        Enemy::hp = hp_;
-    }
+    Enemy& operator=(const Enemy &);
 
-    void setIsTurn(bool isTurn_) {
-        Enemy::isTurn = isTurn_;
-    }
+    void setHp(int);
 
-    void setBaseDamage(int baseDamage_) {
-        Enemy::baseDamage = baseDamage_;
-    }
+    void setIsTurn(bool);
 
-    void setType(Type type_) {
-        Enemy::type = type_;
-    }
+    void setBaseDamage(int);
 
-    void  addSpell(const Spell& spell_){
-        Enemy::spell.push_back(spell_);
-    }
+    void setType(ElementalType);
 
-    void removeSpell(const Spell &spell_){
-        for(auto it = spell.begin(); it != spell.end();){
-            if(*it == spell_){
-                it = spell.erase(it);
-                break;
-            }
-        }
-    }
+    void addSpell(const Spell&);
 
-    [[nodiscard]] int getHp() const {
-        return hp;
-    }
+    void removeSpell(const Spell&);
 
-    [[nodiscard]] bool isTurn1() const {
-        return isTurn;
-    }
+    [[nodiscard]] int getHp() const;
 
-    [[nodiscard]] int getBaseDamage() const {
-        return baseDamage;
-    }
+    [[nodiscard]] bool isTurn1() const;
 
-    [[nodiscard]] Type getType() const {
-        return type;
-    }
+    [[nodiscard]] int getBaseDamage() const;
 
-    [[nodiscard]] int getSpells() const {
-        return (int)spell.size();
-    }
+    [[nodiscard]] ElementalType getType() const;
 
-    ~Enemy() {
-        std::cout<<"Disctructor apelat pentru clasa Enemy";
-    };
+    [[nodiscard]] const std::vector<Spell> &getSpell() const;
+
 };
 
 

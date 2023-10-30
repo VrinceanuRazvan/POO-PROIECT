@@ -115,13 +115,14 @@ add_executable(${PROJECT_NAME} main.cpp
         Classes/Tileset.h
         Classes/Spell.cpp
         Classes/Spell.h
-        Classes/Type.h
         Classes/Enemy.cpp
         Classes/Enemy.h
         Classes/Weapon.cpp
         Classes/Weapon.h
         Classes/Player.cpp
-        Classes/Player.h)
+        Classes/Player.h
+        Classes/ElementalType.h
+)
 
 ###############################################################################
 

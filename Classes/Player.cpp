@@ -31,3 +31,15 @@ Player::Player() {
     setSprite();
     setDamage();
 }
+
+Player::Player(const Player &other) {
+    std::cout<<"Constructor de copiere pentru clasa Player";
+}
+
+Player &Player::operator=(const Player &other) {
+    std::cout<<"Operator = pentru clasa Player";
+}
+
+Player::~Player() {
+    std::cout<<"Deconstructor player";
+}

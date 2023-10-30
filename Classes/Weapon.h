@@ -1,41 +1,19 @@
 #ifndef OOP_WEAPON_H
 #define OOP_WEAPON_H
 
-#include "Type.h"
+#include "ElementalType.h"
 
 class Weapon{
     float damageMultiplier;
-    Type type;
+    ElementalType type;
 public:
 
-    explicit Weapon(float damageMultiplier_ = 0, Type type_ = Type::None) : damageMultiplier(damageMultiplier_), type(type_) {}
+    explicit Weapon(float damageMultiplier_ = 0, ElementalType type_ = ElementalType::None) : damageMultiplier(damageMultiplier_), type(type_) {}
 
-    void setdamageMultiplier(float damageMultiplier_) {
-        Weapon::damageMultiplier = damageMultiplier_;
-    }
+    ~Weapon();
 
-    void setType(Type type_) {
-        Weapon::type = type_;
-    }
+    float getDamageMultiplier() const;
 
-    [[nodiscard]] float getdamageMultiplier() const {
-        return damageMultiplier;
-    }
-
-    [[nodiscard]] Type getType() const {
-        return type;
-    }
-
-    bool operator==(const Weapon &rhs) const {
-        return damageMultiplier == rhs.damageMultiplier &&
-               type == rhs.type;
-    }
-
-    bool operator!=(const Weapon &rhs) const {
-        return !(rhs == *this);
-    }
-
-    ~Weapon() = default;
 };
 
 
