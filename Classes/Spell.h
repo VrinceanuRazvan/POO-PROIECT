@@ -20,11 +20,11 @@ public:
 
     Spell& operator=(const Spell & other) = default;
 
-    /*friend std::ostream& operator<<(std::ostream& os,const Spell& spell_)
+    friend std::ostream& operator<<(std::ostream& os,const Spell& spell_)
     {
         os << "Spell type: " << spell_.type << " Spell damage: "<< spell_.damage << " ";
         return os;
-    }*/
+    }
 
     void setDamage(int damage_) {
         Spell::damage = damage_;

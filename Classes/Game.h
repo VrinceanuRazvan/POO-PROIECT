@@ -14,7 +14,7 @@
 class Game {
 private:
 
-    sf::RenderWindow* window;
+    sf::RenderWindow window;
     sf::VideoMode videoMode;
 
     const int World[10000] =
@@ -31,13 +31,13 @@ private:
     sf::Event ev;
 
 
-    Player* player;
+    Player player;
 
 public:
 
     Game();
 
-    virtual ~Game();
+    ~Game();
 
     void play();
 

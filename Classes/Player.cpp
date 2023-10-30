@@ -8,17 +8,11 @@ void Player::setSprite() {
     sprite.setTexture(texture);
 }
 
-Player::Player() {
-    this->movementSpeed = 10;
-    setSprite();
-    //setDamage();
-}
-
 void Player::move(int x, int y) {
     this->sprite.move(x * movementSpeed, y * movementSpeed);
 }
 
-void Player::movement() {
+void Player::move() {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         this->move(0,-1);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
