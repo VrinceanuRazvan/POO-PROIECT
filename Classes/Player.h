@@ -26,22 +26,14 @@ class Player : public sf::Drawable, sf::Transformable {
         target.draw(sprite, states);
 }
 
-    void move(int x, int y);
+    void movem(int x, int y);
 
 public:
-    explicit Player(std::string name_ = "", int hp_ = 100, float baseDamage_ = 100, int damage_ = 0, float movementSpeed_ = 10, Type type_ = Type::None,
-                     bool isTurn_ = false) : name(std::move(name_)), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
-                                                                                       movementSpeed(movementSpeed_), type(type_),
-                                                                                        isTurn(isTurn_) {
-        setSprite();
-        setDamage();
-    }
+    Player();
 
     void move();
 
     void setSprite();
-
-    Player();
 
     Player(const Player& other) = default;
 
@@ -104,10 +96,10 @@ public:
         return isTurn;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Player& player_){
+    /*friend std::ostream& operator<<(std::ostream& os, const Player& player_){
         os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage<<player_.type;
         return os;
-    }
+    }*/
 
     ~Player() = default;
 
