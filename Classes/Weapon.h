@@ -5,16 +5,16 @@
 
 class Weapon{
     float damageMultiplier;
-    ElementalType type;
+    //ElementalType type;
 public:
 
-    explicit Weapon(float damageMultiplier_ = 0, ElementalType type_ = ElementalType::None) : damageMultiplier(damageMultiplier_), type(type_) {}
+    explicit Weapon(float damageMultiplier_ = 0) : damageMultiplier(damageMultiplier_){}
 
     ~Weapon();
 
     [[nodiscard]] float getDamageMultiplier() const;
 
-    void setType(ElementalType type_);
+    //void setType(ElementalType type_);
 
 };
 
