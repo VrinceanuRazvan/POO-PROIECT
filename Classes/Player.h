@@ -29,9 +29,9 @@ class Player : public sf::Drawable, sf::Transformable {
     void move(int x, int y);
 
 public:
-    explicit Player(std::string name_ = "", int hp_ = 100, float baseDamage_ = 100, int damage_ = 0, float movementSpeed_ = 10, Type type_ = Type::None, Weapon *weapon_ = nullptr,
+    explicit Player(std::string name_ = "", int hp_ = 100, float baseDamage_ = 100, int damage_ = 0, float movementSpeed_ = 10, Type type_ = Type::None,
                      bool isTurn_ = false) : name(std::move(name_)), hp(hp_), baseDamage(baseDamage_), Damage(damage_),
-                                                                                       movementSpeed(movementSpeed_), type(type_), weapon(*weapon_),
+                                                                                       movementSpeed(movementSpeed_), type(type_),
                                                                                         isTurn(isTurn_) {
         setSprite();
         setDamage();
