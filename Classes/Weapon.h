@@ -14,6 +14,8 @@ public:
 
     [[nodiscard]] float getDamageMultiplier() const;
 
+    void setType(ElementalType type_);
+
 };
 
 
