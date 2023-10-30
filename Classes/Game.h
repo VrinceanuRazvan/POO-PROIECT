@@ -17,7 +17,7 @@ private:
     sf::RenderWindow window;
     sf::VideoMode videoMode;
 
-    const int World[10000] =
+    const int World[300] =
             {
                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -32,6 +32,7 @@ private:
 
 
     Player player;
+//    Enemy enemy;
 
 public:
 

@@ -22,11 +22,7 @@ public:
 
     ~Spell();
 
-    /*friend std::ostream& operator<<(std::ostream& os,const Spell& spell_)
-    {
-        os << "Spell type: " << spell_.type << " Spell damage: "<< spell_.damage << " ";
-        return os;
-    }*/
+    friend std::ostream& operator<<(std::ostream& os,const Spell& spell_);
 
     bool operator==(const Spell &rhs) const;
 

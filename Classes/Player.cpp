@@ -9,10 +9,8 @@ void Player::setSprite() {
 }
 
 void Player::movem(int x, int y) {
-    this->sprite.move(x * movementSpeed, y * movementSpeed);
+    this->sprite.move((float)x * movementSpeed,(float) y * movementSpeed);
 }
-
-
 
 void Player::move() {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -23,7 +21,6 @@ void Player::move() {
         this->movem(1,0);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         this->movem(-1,0);
-
 }
 
 Player::Player() {
@@ -32,14 +29,31 @@ Player::Player() {
     setDamage();
 }
 
-Player::Player(const Player &other) {
+Player::Player(const Player &other): name(other.name),sprite(other.sprite),texture(other.texture),hp(other.hp),baseDamage(other.baseDamage),Damage(other.Damage),
+movementSpeed(other.movementSpeed),type(other.type), weapon(other.weapon),isTurn(other.isTurn){
+
     std::cout<<"Constructor de copiere pentru clasa Player";
 }
 
 Player &Player::operator=(const Player &other) {
+    name = other.name;
+    sprite = other.sprite;
+    texture = other.texture;
+    hp = other.hp;
+    baseDamage = other.baseDamage;
+    Damage = other.Damage;
+    movementSpeed = other.movementSpeed;
+    type = other.type;
+    weapon = other.weapon;
+    isTurn = other.isTurn;
     std::cout<<"Operator = pentru clasa Player";
+    return *this;
 }
 
 Player::~Player() {
     std::cout<<"Deconstructor player";
 }
+
+/*void Player::spawn(sf::Vector2f spawnPoint) {
+    position = spawnPoint;
+}*/

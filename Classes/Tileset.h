@@ -1,13 +1,15 @@
 #ifndef OOP_TILESET_H
 #define OOP_TILESET_H
 
+///Cod de pe formul SFML
+
 #include <SFML/Graphics.hpp>
 
 class Tileset : public sf::Drawable, public sf::Transformable {
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         // apply the entity's transform -- combine it with the one that was passed by the caller
         states.transform *= getTransform(); // getTransform() is defined by sf::Transformable

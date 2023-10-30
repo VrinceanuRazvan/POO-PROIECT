@@ -21,8 +21,9 @@ class Player : public sf::Drawable, sf::Transformable {
     ElementalType type;
     Weapon weapon;
     bool isTurn = false;
+    sf::Vector2f position;
 
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const{
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override{
         target.draw(sprite, states);
 }
 
@@ -46,11 +47,13 @@ public:
         Player::Damage = (int) std::floor( baseDamage *  weaponDamage);
     }
 
+    //void spawn(sf::Vector2f);
 
-    /*friend std::ostream& operator<<(std::ostream& os, const Player& player_){
-        os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage<<player_.type;
+
+    friend std::ostream& operator<<(std::ostream& os, const Player& player_){
+        os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage;
         return os;
-    }*/
+    }
 
 };
 

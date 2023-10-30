@@ -27,3 +27,8 @@ bool Spell::operator==(const Spell &rhs) const {
 bool Spell::operator!=(const Spell &rhs) const {
     return !(rhs == *this);
 }
+
+std::ostream &operator<<(std::ostream &os, const Spell &spell_) {
+    os <<" Spell damage:"<< spell_.damage << " ";
+    return os;
+}

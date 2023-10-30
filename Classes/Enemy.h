@@ -22,7 +22,7 @@ public:
 
     Enemy& operator=(const Enemy &);
 
-    void setHp(int);
+    /*void setHp(int);
 
     void setIsTurn(bool);
 
@@ -44,6 +44,7 @@ public:
 
     [[nodiscard]] const std::vector<Spell> &getSpell() const;
 
+     */
 };
 
 

@@ -40,6 +40,7 @@ void Game::pollEvent() {
 }
 
 void Game::play(){
+    //player.spawn(sf::Vector2f (videoMode.width/2,videoMode.height/2));
     while(window.isOpen())
     {
         update();

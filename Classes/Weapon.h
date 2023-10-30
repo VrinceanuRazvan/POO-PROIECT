@@ -12,7 +12,7 @@ public:
 
     ~Weapon();
 
-    float getDamageMultiplier() const;
+    [[nodiscard]] float getDamageMultiplier() const;
 
 };
 

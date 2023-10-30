@@ -18,7 +18,7 @@ Enemy::~Enemy() {
     std::cout<<"Disctructor apelat pentru clasa Enemy";
 }
 
-void Enemy::removeSpell(const Spell &spell_) {
+/*void Enemy::removeSpell(const Spell &spell_) {
     for(auto it = spell.begin(); it != spell.end();){
         if(*it == spell_){
             it = spell.erase(it);
@@ -65,4 +65,4 @@ ElementalType Enemy::getType() const {
 
 const std::vector<Spell> &Enemy::getSpell() const {
     return spell;
-}
+}*/
