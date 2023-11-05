@@ -1,6 +1,7 @@
 #include "Tileset.h"
 
 ///Cod de pe formul SFML
+///https://www.sfml-dev.org/tutorials/2.1/graphics-vertex-array.php
 
 
 bool Tileset::load(const std::string &tileset, sf::Vector2u tileSize, const int *tiles, unsigned int width,unsigned int height) {

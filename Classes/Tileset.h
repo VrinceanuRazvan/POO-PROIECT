@@ -2,6 +2,7 @@
 #define OOP_TILESET_H
 
 ///Cod de pe formul SFML
+///https://www.sfml-dev.org/tutorials/2.1/graphics-vertex-array.php
 
 #include <SFML/Graphics.hpp>
 
