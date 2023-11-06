@@ -15,7 +15,7 @@ Enemy::Enemy(const Enemy &other):hp(other.hp),isTurn(other.isTurn),baseDamage(ot
 }
 
 Enemy::~Enemy() {
-    std::cout<<"Disctructor apelat pentru clasa Enemy";
+    std::cout<<"Desctructor apelat pentru clasa Enemy";
 }
 
 /*void Enemy::removeSpell(const Spell &spell_) {
