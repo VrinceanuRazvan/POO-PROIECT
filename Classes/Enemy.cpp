@@ -18,7 +18,7 @@ Enemy::~Enemy() {
     std::cout<<"Desctructor apelat pentru clasa Enemy";
 }
 
-/*void Enemy::removeSpell(const Spell &spell_) {
+void Enemy::removeSpell(const Spell &spell_) {
     for(auto it = spell.begin(); it != spell.end();){
         if(*it == spell_){
             it = spell.erase(it);
@@ -31,7 +31,7 @@ void Enemy::addSpell(const Spell &spell_) {
     Enemy::spell.push_back(spell_);
 }
 
-void Enemy::setType(ElementalType type_) {
+/*void Enemy::setType(ElementalType type_) {
     Enemy::type = type_;
 }
 

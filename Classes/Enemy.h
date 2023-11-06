@@ -22,29 +22,29 @@ public:
 
     Enemy& operator=(const Enemy &);
 
-    /*void setHp(int);
+    //void setHp(int);
 
-    void setIsTurn(bool);
+    //void setIsTurn(bool);
 
-    void setBaseDamage(int);
+    //void setBaseDamage(int);
 
-    void setType(ElementalType);
+    //void setType(ElementalType);
 
     void addSpell(const Spell&);
 
     void removeSpell(const Spell&);
 
-    [[nodiscard]] int getHp() const;
+    //[[nodiscard]] int getHp() const;
 
-    [[nodiscard]] bool isTurn1() const;
+    //[[nodiscard]] bool isTurn1() const;
 
-    [[nodiscard]] int getBaseDamage() const;
+    //[[nodiscard]] int getBaseDamage() const;
 
-    [[nodiscard]] ElementalType getType() const;
+    //[[nodiscard]] ElementalType getType() const;
 
-    [[nodiscard]] const std::vector<Spell> &getSpell() const;
+    //[[nodiscard]] const std::vector<Spell> &getSpell() const;
 
-     */
+
 };
 
 
