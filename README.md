@@ -2,8 +2,9 @@
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [x] Nume proiect: SpellRPG
+- [x] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- Un RPG top-down, pus pe o mapa tile-based, in care gameplay-ul este bazat pe un sisstem turn-base de spell-uri
 
 ## Tema 1
 
