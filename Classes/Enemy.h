@@ -1,20 +1,22 @@
 #ifndef OOP_ENEMY_H
 #define OOP_ENEMY_H
 
-#include "Game.h"
+#include <vector>
+#include "ElementalType.h"
+#include "Spell.h"
+
 
 class Enemy{
     int hp;
-    bool isTurn;
+    bool isTurn = false;
     int baseDamage;
     ElementalType type;
     std::vector <Spell> spell;
 public:
 
-    explicit Enemy(int hp_ = 0, bool isTurn_ = false, int baseDamage_ = 0, ElementalType type_ = ElementalType::None, const std::vector<Spell> &spell_ = {}) :hp(hp_), isTurn(isTurn_),
-                                                                                                                                            baseDamage(baseDamage_),
-                                                                                                                                            type(type_),
-                                                                                                                                            spell(spell_) {}
+    Enemy();
+
+    Enemy(int hp, int baseDamage, ElementalType type);
 
     ~Enemy();
 

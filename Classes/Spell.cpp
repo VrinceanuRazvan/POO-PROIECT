@@ -1,5 +1,17 @@
 #include "Spell.h"
 
+#include <utility>
+
+Spell::Spell() {}
+
+Spell::Spell(int damage, ElementalType type = ElementalType::None, std::string name = "", std::string description = "")
+        : damage(damage),
+          type(type),
+          name(std::move(name)),
+          description(std::move(
+                  description)) {}
+
+
 Spell::Spell(const Spell &other) :damage(other.damage),type(other.type),name(other.name),description(other.description){
     std::cout<<"Constructor de copiere pentru clasa Spell";
 }
@@ -32,3 +44,4 @@ std::ostream &operator<<(std::ostream &os, const Spell &spell_) {
     os <<" Spell damage:"<< spell_.damage << " ";
     return os;
 }
+

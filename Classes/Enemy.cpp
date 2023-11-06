@@ -1,5 +1,10 @@
 #include "Enemy.h"
 
+Enemy::Enemy() {}
+
+Enemy::Enemy(int hp, int baseDamage = 0, ElementalType type = ElementalType::None) : hp(hp), baseDamage(baseDamage),
+                                                                                     type(type) {}
+
 Enemy &Enemy::operator=(const Enemy &other) {
     hp = other.hp;
     isTurn = other.isTurn;
@@ -9,6 +14,7 @@ Enemy &Enemy::operator=(const Enemy &other) {
     std::cout<<"Operator = pentru clasa Enemy";
     return *this;
 }
+
 
 Enemy::Enemy(const Enemy &other):hp(other.hp),isTurn(other.isTurn),baseDamage(other.baseDamage),type(other.type),spell(other.spell) {
     std::cout<<"Constructor de copiere pentru clasa Enemy";

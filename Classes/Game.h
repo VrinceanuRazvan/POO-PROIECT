@@ -32,7 +32,8 @@ private:
 
 
     Player player;
-//    Enemy enemy;
+    Enemy enemy{100, 100, ElementalType::Fire};
+    Spell spell{50, ElementalType::Fire, "FireBall", "FireDamage"};
 
 public:
 

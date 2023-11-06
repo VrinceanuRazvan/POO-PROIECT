@@ -6,15 +6,15 @@
 #include "ElementalType.h"
 
 class Spell{
-    int damage{};
+    int damage = 0;
     ElementalType type;
     std::string name;
     std::string description;
 public:
 
-    explicit Spell(int damage = 0, ElementalType type = ElementalType::None, std::string name = "", std::string description = "") : damage(damage), type(type),
-                                                                                            name(std::move(name)),
-                                                                                            description(std::move(description)) {}
+    Spell();
+
+    Spell(int damage, ElementalType type, std::string name, std::string description);
 
     Spell (const Spell&);
 

@@ -11,6 +11,9 @@ Game::Game() {
     {
         std::cout<<"Erorr";
     }
+
+    enemy.addSpell(spell);
+    enemy.removeSpell(spell);
 }
 
 Game::~Game() = default;
