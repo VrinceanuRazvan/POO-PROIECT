@@ -20,6 +20,7 @@ public:
 
     ~Enemy();
 
+
     Enemy(const Enemy&);
 
     Enemy& operator=(const Enemy &);
