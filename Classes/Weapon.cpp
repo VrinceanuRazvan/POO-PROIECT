@@ -1,7 +1,7 @@
 #include "Weapon.h"
 
 Weapon::~Weapon() {
-    std::cout<<"Deconstructor weapon";
+    std::cout << "Deconstructor weapon\n";
 }
 
 float Weapon::getDamageMultiplier() const {

@@ -16,18 +16,18 @@ Enemy &Enemy::operator=(const Enemy &other) {
     baseDamage = other.baseDamage;
     type = other.type;
     Spells = other.Spells;
-    std::cout<<"Operator = pentru clasa Enemy";
+    std::cout << "Operator = pentru clasa Enemy\n";
     return *this;
 }
 
 
 Enemy::Enemy(const Enemy &other) : hp(other.hp), isTurn(other.isTurn), baseDamage(other.baseDamage), type(other.type),
                                    Spells(other.Spells) {
-    std::cout<<"Constructor de copiere pentru clasa Enemy";
+    std::cout << "Constructor de copiere pentru clasa Enemy\n";
 }
 
 Enemy::~Enemy() {
-    std::cout<<"Desctructor apelat pentru clasa Enemy";
+    std::cout << "Desctructor apelat pentru clasa Enemy\n";
 }
 
 /*void Enemy::removeSpell(const Spell &spell_) {

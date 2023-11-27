@@ -34,7 +34,7 @@ Player::Player() {
 Player::Player(const Player &other): name(other.name),sprite(other.sprite),texture(other.texture),hp(other.hp),baseDamage(other.baseDamage),Damage(other.Damage),
 movementSpeed(other.movementSpeed),type(other.type), weapon(other.weapon),isTurn(other.isTurn){
 
-    std::cout<<"Constructor de copiere pentru clasa Player";
+    std::cout << "Constructor de copiere pentru clasa Player\n";
 }
 
 Player &Player::operator=(const Player &other) {
@@ -48,12 +48,12 @@ Player &Player::operator=(const Player &other) {
     type = other.type;
     weapon = other.weapon;
     isTurn = other.isTurn;
-    std::cout<<"Operator = pentru clasa Player";
+    std::cout << "Operator = pentru clasa Player\n";
     return *this;
 }
 
 Player::~Player() {
-    std::cout<<"Deconstructor player";
+    std::cout << "Deconstructor player\n";
 }
 
 void Player::Spawn(float x, float y) {

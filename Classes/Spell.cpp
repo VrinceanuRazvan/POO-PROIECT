@@ -12,7 +12,7 @@ Spell::Spell(int damage, std::string type = "", std::string name = "", std::stri
 
 
 Spell::Spell(const Spell &other) :damage(other.damage),type(other.type),name(other.name),description(other.description){
-    std::cout<<"Constructor de copiere pentru clasa Spell";
+    std::cout << "Constructor de copiere pentru clasa Spell\n";
 }
 
 Spell &Spell::operator=(const Spell &other) {
@@ -20,12 +20,12 @@ Spell &Spell::operator=(const Spell &other) {
     damage = other.damage;
     type = other.type;
     description = other.description;
-    std::cout<<"Operator = pentru clasa Spell";
+    std::cout << "Operator = pentru clasa Spell\n";
     return *this;
 }
 
 Spell::~Spell() {
-    std::cout<<"Distructor Spell";
+    std::cout << "Distructor Spell\n";
 }
 
 bool Spell::operator==(const Spell &rhs) const {
