@@ -1,11 +1,11 @@
 #ifndef OOP_WEAPON_H
 #define OOP_WEAPON_H
 
-#include "ElementalType.h"
+#include <iostream>
 
 class Weapon{
     float damageMultiplier;
-    //ElementalType type;
+    std::string type;
 public:
 
     explicit Weapon(float damageMultiplier_ = 0) : damageMultiplier(damageMultiplier_){}

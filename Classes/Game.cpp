@@ -11,9 +11,6 @@ Game::Game() {
     {
         std::cout<<"Erorr";
     }
-
-    enemy.addSpell(spell);
-    enemy.removeSpell(spell);
 }
 
 Game::~Game() = default;
@@ -36,6 +33,7 @@ void Game::pollEvent() {
                 {
                     this->window.close();
                 }
+                break;
             default:
                 break;
         }
@@ -44,6 +42,13 @@ void Game::pollEvent() {
 
 void Game::play(){
     //player.spawn(sf::Vector2f (videoMode.width/2,videoMode.height/2));
+
+    enemy.GetRandomSpellSet("tastatura.txt", 2);
+    player.GetRandomSpellSet("tastatura.txt", 2);
+
+    player.Spawn(100, 100);
+    enemy.Spawn(100, 200);
+
     while(window.isOpen())
     {
         update();
@@ -54,11 +59,17 @@ void Game::play(){
 
 void Game::update() {
     this->pollEvent();
+
+    if (player.getSprite().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())) {
+        std::cout << "Player and enemy collided!" << std::endl;
+    }
+
 }
 
 void Game::render() {
     window.clear();
     window.draw(worldTileset);
+    window.draw(enemy);
     window.draw(player);
     window.display();
 }

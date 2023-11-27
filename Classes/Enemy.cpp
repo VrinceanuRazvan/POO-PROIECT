@@ -1,22 +1,27 @@
+#include <fstream>
+#include <random>
 #include "Enemy.h"
 
-Enemy::Enemy() {}
+Enemy::Enemy() {
+    setSprite();
+}
 
-Enemy::Enemy(int hp, int baseDamage = 0, ElementalType type = ElementalType::None) : hp(hp), baseDamage(baseDamage),
-                                                                                     type(type) {}
+//Enemy::Enemy(int hp, int baseDamage = 0, ElementalType type = ElementalType::None) : hp(hp), baseDamage(baseDamage),
+//                                                                                     type(type) {}
 
 Enemy &Enemy::operator=(const Enemy &other) {
     hp = other.hp;
     isTurn = other.isTurn;
     baseDamage = other.baseDamage;
     type = other.type;
-    spell = other.spell;
+    Spells = other.Spells;
     std::cout<<"Operator = pentru clasa Enemy";
     return *this;
 }
 
 
-Enemy::Enemy(const Enemy &other):hp(other.hp),isTurn(other.isTurn),baseDamage(other.baseDamage),type(other.type),spell(other.spell) {
+Enemy::Enemy(const Enemy &other) : hp(other.hp), isTurn(other.isTurn), baseDamage(other.baseDamage), type(other.type),
+                                   Spells(other.Spells) {
     std::cout<<"Constructor de copiere pentru clasa Enemy";
 }
 
@@ -25,16 +30,66 @@ Enemy::~Enemy() {
 }
 
 void Enemy::removeSpell(const Spell &spell_) {
-    for(auto it = spell.begin(); it != spell.end();){
+    for (auto it = Spells.begin(); it != Spells.end();) {
         if(*it == spell_){
-            it = spell.erase(it);
+            it = Spells.erase(it);
             break;
         }
     }
 }
 
 void Enemy::addSpell(const Spell &spell_) {
-    Enemy::spell.push_back(spell_);
+    Enemy::Spells.push_back(spell_);
+}
+
+void Enemy::setSprite() {
+    if (!texture.loadFromFile("Assets/Enemy.png")) {
+        std::cout << "Erorr";
+    }
+    sprite.setTexture(texture);
+}
+
+void Enemy::Spawn(float x, float y) {
+    sprite.setPosition(x, y);
+}
+
+void Enemy::Attack() {
+
+}
+
+const sf::Sprite &Enemy::getSprite() const {
+    return sprite;
+}
+
+void Enemy::GetRandomSpellSet(const std::string &filename, int n) {
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    std::ifstream inputFile(filename);
+
+    if (!inputFile.is_open()) {
+        std::cout << "Error opening the file." << std::endl;
+        return;
+    }
+
+    std::vector<Spell> allSpells;
+    Spell tempSpell;
+    while (inputFile >> tempSpell) {
+        allSpells.push_back(tempSpell);
+    }
+
+    inputFile.close();
+
+    if ((int) allSpells.size() < n) {
+        std::cout << "Not enough spells in the file." << std::endl;
+        Spells = allSpells;
+    }
+
+    std::shuffle(allSpells.begin(), allSpells.end(), std::mt19937(std::random_device()()));
+
+    std::vector<Spell> randomSpells(allSpells.begin(), allSpells.begin() + n);
+
+    Spells = randomSpells;
+
 }
 
 /*void Enemy::setType(ElementalType type_) {

@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include "Weapon.h"
+#include "Spell.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -18,23 +19,23 @@ class Player : public sf::Drawable, sf::Transformable {
     float baseDamage;
     int Damage;
     float movementSpeed;
-    ElementalType type;
+    std::string type;
     Weapon weapon;
     bool isTurn = false;
-    sf::Vector2f position;
+    std::vector<Spell> Spells;
 
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const override{
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override {
         target.draw(sprite, states);
-}
+    }
 
     void movem(int x, int y);
 
 public:
     Player();
 
-    Player(const Player& other);
+    Player(const Player &other);
 
-    Player& operator=(const Player & other);
+    Player &operator=(const Player &other);
 
     ~Player() override;
 
@@ -42,19 +43,24 @@ public:
 
     void setSprite();
 
-    void setDamage(){
+    void setDamage() {
         float weaponDamage = weapon.getDamageMultiplier();
-        Player::Damage = (int) std::floor( baseDamage *  weaponDamage);
+        Player::Damage = (int) std::floor(baseDamage * weaponDamage);
     }
 
-    //void spawn(sf::Vector2f);
+    void Spawn(float x, float y);
+
+    void Attack();
+
+    const sf::Sprite &getSprite() const;
+
+    void GetRandomSpellSet(const std::string &filename, int n);
 
 
-    friend std::ostream& operator<<(std::ostream& os, const Player& player_){
+    friend std::ostream &operator<<(std::ostream &os, const Player &player_) {
         os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage;
         return os;
     }
-
 };
 
 

@@ -2,21 +2,28 @@
 #define OOP_ENEMY_H
 
 #include <vector>
-#include "ElementalType.h"
 #include "Spell.h"
+#include <SFML/Graphics.hpp>
 
 
-class Enemy{
+class Enemy : public sf::Drawable, sf::Transformable {
     int hp;
     bool isTurn = false;
     int baseDamage;
-    ElementalType type;
-    std::vector <Spell> spell;
+    sf::Sprite sprite;
+    sf::Texture texture;
+    std::string type;
+    std::vector<Spell> Spells;
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override {
+        target.draw(sprite, states);
+    }
+
 public:
 
     Enemy();
 
-    Enemy(int hp, int baseDamage, ElementalType type);
+    //Enemy(int hp, int baseDamage, ElementalType type);
 
     ~Enemy();
 
@@ -24,6 +31,16 @@ public:
     Enemy(const Enemy&);
 
     Enemy& operator=(const Enemy &);
+
+    void Spawn(float x, float y);
+
+    void Attack();
+
+    const sf::Sprite &getSprite() const;
+
+    void GetRandomSpellSet(const std::string &filename, int n);
+
+    void setSprite();
 
     //void setHp(int);
 

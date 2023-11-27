@@ -4,9 +4,9 @@
 
 Spell::Spell() {}
 
-Spell::Spell(int damage, ElementalType type = ElementalType::None, std::string name = "", std::string description = "")
+Spell::Spell(int damage, std::string type = "", std::string name = "", std::string description = "")
         : damage(damage),
-          type(type),
+          type(std::move(type)),
           name(std::move(name)),
           description(std::move(
                   description)) {}
@@ -43,5 +43,12 @@ bool Spell::operator!=(const Spell &rhs) const {
 std::ostream &operator<<(std::ostream &os, const Spell &spell_) {
     os <<" Spell damage:"<< spell_.damage << " ";
     return os;
+}
+
+std::istream &operator>>(std::istream &is, Spell &spell_) {
+    is >> spell_.damage >> spell_.type >> spell_.name;
+    std::getline(is, spell_.description);
+
+    return is;
 }
 

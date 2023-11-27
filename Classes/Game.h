@@ -17,6 +17,7 @@ private:
     sf::RenderWindow window;
     sf::VideoMode videoMode;
 
+
     const int World[300] =
             {
                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -32,8 +33,7 @@ private:
 
 
     Player player;
-    Enemy enemy{100, 100, ElementalType::Fire};
-    Spell spell{50, ElementalType::Fire, "FireBall", "FireDamage"};
+    Enemy enemy;
 
 public:
 
