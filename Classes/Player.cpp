@@ -77,7 +77,7 @@ void Player::Attack(Enemy &enemy) {
         std::cout << "Player casts " << playerSpell.getName() << std::endl;
 
         int damageDealt = playerSpell.getDamage();
-        enemy.setHp(enemy.getHp() - damageDealt);
+        enemy.takeDamage(damageDealt);
     } else {
         std::cout << "Invalid choice. Player skips turn." << std::endl;
     }
@@ -125,4 +125,10 @@ int Player::getHp() const {
 
 void Player::setHp(int _hp) {
     this->hp = _hp;
+}
+
+void Player::takeDamage(int _damage) {
+    if (_damage >= 0) {
+        this->hp -= _damage;
+    }
 }

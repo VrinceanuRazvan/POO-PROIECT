@@ -71,6 +71,8 @@ public:
 
     void setHp(int hp);
 
+    void takeDamage(int _damage);
+
 };
 
 

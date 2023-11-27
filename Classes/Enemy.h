@@ -47,6 +47,8 @@ public:
 
     void setHp(int);
 
+    void takeDamage(int _damage);
+
     //void setIsTurn(bool);
 
     //void setBaseDamage(int);

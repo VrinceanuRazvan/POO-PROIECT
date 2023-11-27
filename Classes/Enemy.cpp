@@ -64,7 +64,7 @@ void Enemy::Attack(Player &player) {
         std::cout << "Enemy attacks with " << enemySpell.getName() << std::endl;
 
         int damageDealt = enemySpell.getDamage();
-        player.setHp(player.getHp() - damageDealt);
+        player.takeDamage(damageDealt);
     }
 }
 
@@ -121,6 +121,12 @@ void Enemy::setHp(int hp_) {
 
 int Enemy::getHp() const {
     return hp;
+}
+
+void Enemy::takeDamage(int _damage) {
+    if (_damage >= 0) {
+        this->hp -= _damage;
+    }
 }
 /*
 bool Enemy::isTurn1() const {

@@ -1,4 +1,1 @@
-20 Fire FireBall A powerful fire spell
-20 Water WaterBall A powerful water spell
-20 Earth EarthSpike A powerful earth spell
-20 Wind WindBlade A powerful wind spell
+Exempe spells : 1 sau 2;

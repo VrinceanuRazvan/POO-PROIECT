@@ -40,7 +40,8 @@ bool Spell::operator!=(const Spell &rhs) const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Spell &spell_) {
-    os <<" Spell damage:"<< spell_.damage << " ";
+    os << " Spell name: " << spell_.name << ", Spell damage: " << spell_.damage << ", Spell type: " << spell_.type
+       << ", Spell description: " << spell_.description;
     return os;
 }
 

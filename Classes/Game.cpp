@@ -43,8 +43,8 @@ void Game::pollEvent() {
 void Game::play(){
     //player.spawn(sf::Vector2f (videoMode.width/2,videoMode.height/2));
 
-    enemy.GetRandomSpellSet("tastatura.txt", 2);
-    player.GetRandomSpellSet("tastatura.txt", 2);
+    enemy.GetRandomSpellSet("Spells.txt", 2);
+    player.GetRandomSpellSet("Spells.txt", 2);
 
     player.Spawn(100, 100);
     enemy.Spawn(100, 200);
