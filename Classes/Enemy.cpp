@@ -30,7 +30,7 @@ Enemy::~Enemy() {
     std::cout<<"Desctructor apelat pentru clasa Enemy";
 }
 
-void Enemy::removeSpell(const Spell &spell_) {
+/*void Enemy::removeSpell(const Spell &spell_) {
     for (auto it = Spells.begin(); it != Spells.end();) {
         if(*it == spell_){
             it = Spells.erase(it);
@@ -41,7 +41,7 @@ void Enemy::removeSpell(const Spell &spell_) {
 
 void Enemy::addSpell(const Spell &spell_) {
     Enemy::Spells.push_back(spell_);
-}
+}*/
 
 void Enemy::setSprite() {
     if (!texture.loadFromFile("Assets/Enemy.png")) {

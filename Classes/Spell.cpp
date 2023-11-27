@@ -1,6 +1,5 @@
 #include "Spell.h"
 
-#include <utility>
 
 Spell::Spell() {}
 

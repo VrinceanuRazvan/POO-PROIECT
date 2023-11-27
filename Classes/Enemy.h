@@ -53,9 +53,9 @@ public:
 
     //void setType(ElementalType);
 
-    void addSpell(const Spell&);
+    //void addSpell(const Spell&);
 
-    void removeSpell(const Spell&);
+    //void removeSpell(const Spell&);
 
     [[nodiscard]] int getHp() const;
 
