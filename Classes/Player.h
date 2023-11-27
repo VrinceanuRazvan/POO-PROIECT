@@ -4,12 +4,17 @@
 #include <cmath>
 #include "Weapon.h"
 #include "Spell.h"
+#include "Enemy.h"
+#include <fstream>
+#include <random>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+
+class Enemy;
 
 class Player : public sf::Drawable, sf::Transformable {
     std::string name;
@@ -50,7 +55,7 @@ public:
 
     void Spawn(float x, float y);
 
-    void Attack();
+    void Attack(Enemy &enemy);
 
     const sf::Sprite &getSprite() const;
 
@@ -61,6 +66,11 @@ public:
         os << "Nume: " << player_.name << " HP: " << player_.hp << " Damage: " << player_.Damage;
         return os;
     }
+
+    int getHp() const;
+
+    void setHp(int hp);
+
 };
 
 

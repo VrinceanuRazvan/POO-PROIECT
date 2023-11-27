@@ -1,6 +1,7 @@
 #include <fstream>
 #include <random>
 #include "Enemy.h"
+#include "Player.h"
 
 Enemy::Enemy() {
     setSprite();
@@ -53,8 +54,18 @@ void Enemy::Spawn(float x, float y) {
     sprite.setPosition(x, y);
 }
 
-void Enemy::Attack() {
+void Enemy::Attack(Player &player) {
+    std::cout << "Enemy's turn! Selecting a random spell..." << std::endl;
 
+    if (!Spells.empty()) {
+        int randomIndex = rand() % Spells.size();
+        Spell enemySpell = Spells[randomIndex];
+
+        std::cout << "Enemy attacks with " << enemySpell.getName() << std::endl;
+
+        int damageDealt = enemySpell.getDamage();
+        player.setHp(player.getHp() - damageDealt);
+    }
 }
 
 const sf::Sprite &Enemy::getSprite() const {
@@ -103,7 +114,7 @@ void Enemy::setBaseDamage(int baseDamage_) {
 void Enemy::setIsTurn(bool isTurn_) {
     Enemy::isTurn = isTurn_;
 }
-
+*/
 void Enemy::setHp(int hp_) {
     Enemy::hp = hp_;
 }
@@ -111,7 +122,7 @@ void Enemy::setHp(int hp_) {
 int Enemy::getHp() const {
     return hp;
 }
-
+/*
 bool Enemy::isTurn1() const {
     return isTurn;
 }

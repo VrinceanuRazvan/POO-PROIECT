@@ -1,6 +1,6 @@
-#include <fstream>
-#include <random>
 #include "Player.h"
+#include "Enemy.h"
+
 
 void Player::setSprite() {
     if (!texture.loadFromFile("Assets/Player.png"))
@@ -60,9 +60,29 @@ void Player::Spawn(float x, float y) {
     sprite.setPosition(x, y);
 }
 
-void Player::Attack() {
+void Player::Attack(Enemy &enemy) {
+    std::cout << "Player's turn! Choose a spell:" << std::endl;
 
+    for (size_t i = 0; i < Spells.size(); ++i) {
+        std::cout << i + 1 << ". " << Spells[i] << std::endl;
+    }
+
+    int choice;
+    std::cout << "Enter the number of the spell you want to use: ";
+    std::cin >> choice;
+
+    if (choice >= 1 && static_cast<size_t>(choice) <= Spells.size()) {
+        Spell playerSpell = Spells[choice - 1];
+
+        std::cout << "Player casts " << playerSpell.getName() << std::endl;
+
+        int damageDealt = playerSpell.getDamage();
+        enemy.setHp(enemy.getHp() - damageDealt);
+    } else {
+        std::cout << "Invalid choice. Player skips turn." << std::endl;
+    }
 }
+
 
 const sf::Sprite &Player::getSprite() const {
     return sprite;
@@ -97,4 +117,12 @@ void Player::GetRandomSpellSet(const std::string &filename, int n) {
 
     Spells = randomSpells;
 
+}
+
+int Player::getHp() const {
+    return hp;
+}
+
+void Player::setHp(int hp) {
+    Player::hp = hp;
 }

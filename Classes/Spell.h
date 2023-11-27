@@ -29,6 +29,9 @@ public:
 
     bool operator!=(const Spell &rhs) const;
 
+    [[nodiscard]] int getDamage() const;
+
+    const std::string &getName() const;
 
 };
 

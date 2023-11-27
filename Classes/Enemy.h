@@ -1,10 +1,13 @@
 #ifndef OOP_ENEMY_H
 #define OOP_ENEMY_H
 
+#include <cstdlib>
 #include <vector>
 #include "Spell.h"
+#include "Player.h"
 #include <SFML/Graphics.hpp>
 
+class Player;
 
 class Enemy : public sf::Drawable, sf::Transformable {
     int hp;
@@ -34,7 +37,7 @@ public:
 
     void Spawn(float x, float y);
 
-    void Attack();
+    void Attack(Player &player);
 
     const sf::Sprite &getSprite() const;
 
@@ -42,7 +45,7 @@ public:
 
     void setSprite();
 
-    //void setHp(int);
+    void setHp(int);
 
     //void setIsTurn(bool);
 
@@ -54,7 +57,7 @@ public:
 
     void removeSpell(const Spell&);
 
-    //[[nodiscard]] int getHp() const;
+    [[nodiscard]] int getHp() const;
 
     //[[nodiscard]] bool isTurn1() const;
 

@@ -48,6 +48,10 @@ public:
     void update();
 
     void render();
+
+    void startCombat();
+
+    void checkCombatResult();
 };
 
 

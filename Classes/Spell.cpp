@@ -52,3 +52,11 @@ std::istream &operator>>(std::istream &is, Spell &spell_) {
     return is;
 }
 
+int Spell::getDamage() const {
+    return damage;
+}
+
+const std::string &Spell::getName() const {
+    return name;
+}
+

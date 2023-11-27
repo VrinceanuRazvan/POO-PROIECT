@@ -49,6 +49,9 @@ void Game::play(){
     player.Spawn(100, 100);
     enemy.Spawn(100, 200);
 
+    enemy.setHp(100);
+    player.setHp(100);
+
     while(window.isOpen())
     {
         update();
@@ -62,6 +65,16 @@ void Game::update() {
 
     if (player.getSprite().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())) {
         std::cout << "Player and enemy collided!" << std::endl;
+        //float X = player.getSprite().getPosition().x;
+        //float Y = player.getSprite().getPosition().y;
+        player.Spawn(500, 500);
+        startCombat();
+
+        player.setHp(100);
+        enemy.setHp(100);
+
+        //player.Spawn(X,Y);
+
     }
 
 }
@@ -72,4 +85,38 @@ void Game::render() {
     window.draw(enemy);
     window.draw(player);
     window.display();
+}
+
+void Game::startCombat() {
+    // Display combat message or UI
+    std::cout << "Combat Started!" << std::endl;
+
+    while (player.getHp() > 0 && enemy.getHp() > 0) {
+        // Player's turn
+        player.Attack(enemy);
+        if (enemy.getHp() <= 0) {
+            break;
+        }
+
+        // Enemy's turn
+        enemy.Attack(player);
+        if (player.getHp() <= 0) {
+            break;
+        }
+    }
+
+    // Combat has ended
+    checkCombatResult();
+    std::cout << "Combat Ended!" << std::endl;
+}
+
+
+void Game::checkCombatResult() {
+    if (player.getHp() <= 0 && enemy.getHp() <= 0) {
+        std::cout << "It's a draw! Both player and enemy have been defeated." << std::endl;
+    } else if (player.getHp() <= 0) {
+        std::cout << "Player has been defeated! Enemy wins!" << std::endl;
+    } else if (enemy.getHp() <= 0) {
+        std::cout << "Enemy has been defeated! Player wins!" << std::endl;
+    }
 }
