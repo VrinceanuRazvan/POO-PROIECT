@@ -2,6 +2,7 @@
 #define OOP_SPELL_H
 
 #include <utility>
+#include <string>
 #include <iostream>
 
 class Spell{

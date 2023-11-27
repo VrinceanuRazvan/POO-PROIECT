@@ -123,6 +123,6 @@ int Player::getHp() const {
     return hp;
 }
 
-void Player::setHp(int hp) {
-    Player::hp = hp;
+void Player::setHp(int _hp) {
+    this->hp = _hp;
 }
