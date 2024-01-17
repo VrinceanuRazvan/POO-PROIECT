@@ -67,3 +67,7 @@ void Entity::takeDamage(int _damage) {
         this->hp -= _damage;
     }
 }
+
+void Entity::die() {
+    delete this;
+}

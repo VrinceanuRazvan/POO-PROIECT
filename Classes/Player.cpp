@@ -26,29 +26,22 @@ Player &Player::operator=(const Player &other) {
     return *this;
 }
 
-void Player::Attack(Entity &entity) {
-    std::cout << "Player's turn! Choose a spell:" << std::endl;
-
-    for (size_t i = 0; i < Spells.size(); ++i) {
-        std::cout << i + 1 << ". " << Spells[i] << std::endl;
-    }
-
-    int choice;
-    std::cout << "Enter the number of the spell you want to use: ";
-    std::cin >> choice;
-
-    if (choice >= 1 && static_cast<size_t>(choice) <= Spells.size()) {
-        Spell playerSpell = Spells[choice - 1];
-
-        std::cout << "Player casts " << playerSpell.getName() << std::endl;
+void Player::Attack(Entity &entity, int spellIndex) {
+    if (spellIndex >= 0 && spellIndex < Spells.size()) {
+        Spell playerSpell = Spells[spellIndex];
+        std::cout << "Player attacks with " << playerSpell.getName() << std::endl;
 
         int damageDealt = playerSpell.getDamage();
         entity.takeDamage(damageDealt);
     } else {
-        std::cout << "Invalid choice. Player skips turn." << std::endl;
+        std::cout << "Invalid spell index!" << std::endl;
     }
 }
 
 void Player::setWeapon(const Weapon &weapon_) {
     Player::weapon = weapon_;
+}
+
+int Player::getSpellCount() {
+    return Spells.size();
 }

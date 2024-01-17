@@ -1,54 +1,46 @@
-#ifndef OOP_GAME_H
-#define OOP_GAME_H
+#ifndef GAME_H
+#define GAME_H
 
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-#include "Tileset.h"
-#include "Spell.h"
-#include "Enemy.h"
+#include <SFML/Window.hpp>
+#include "Entity.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "Tileset.h"
+#include <vector>
+#include <iostream>
 
 class Game {
-private:
-
-    sf::RenderWindow window;
-    sf::VideoMode videoMode;
-
-
-    const int World[300] =
-            {
-                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            };
-
-    Tileset worldTileset ;
-    sf::Event ev;
-
-    Player player;
-    std::vector<Enemy> enemies;
-
 public:
-
     Game();
 
     ~Game();
 
-    void play();
+    void run();
+
+private:
+    sf::RenderWindow window;
+    sf::Event ev;
+    sf::VideoMode videoMode;
+    Tileset worldTileset;
+    std::vector<Enemy> enemies;
+    Player player;
+    bool inCombat;
+
+    const int World[200] = {0};
+
+    sf::RectangleShape combatMenuBackground;
+    std::vector<sf::RectangleShape> spellButtons;
+
+    sf::Text playerHPText;
+    sf::Text enemyHPText;
+    sf::Text combatLogText;
 
     void pollEvent();
-
     void update();
-
     void render();
-
     void startCombat(Enemy &enemy);
 };
 
-
-#endif //OOP_GAME_H
+#endif // GAME_H

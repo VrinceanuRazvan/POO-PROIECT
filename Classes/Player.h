@@ -14,11 +14,13 @@ class Player : public Entity {
 public:
     Player();
 
+    ~Player() override = default;
+
     Player &operator=(const Player &other);
 
     void move() override;
 
-    void Attack(Entity &entity) override;
+    void Attack(Entity &entity, int spellIndex) override;
 
     void setWeapon(const Weapon &weapon);
 
@@ -26,6 +28,8 @@ public:
         os << "Nume: " << player_.name << " HP: " << player_.hp;
         return os;
     }
+
+    int getSpellCount();
 };
 
 #endif //OOP_PLAYER_H

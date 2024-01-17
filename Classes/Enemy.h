@@ -5,6 +5,10 @@
 
 class Enemy : public Entity {
 
+    sf::Time movementCooldown;
+    sf::Time timeSinceLastMove;
+    sf::Clock clock;
+
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override {
         target.draw(sprite, states);
     }
@@ -13,12 +17,11 @@ public:
 
     Enemy();
 
-    ~Enemy();
+    ~Enemy() override = default;
 
     void move() override;
 
-    void Attack(Entity &entity) override;
-
+    void Attack(Entity &entity, int spellIndex) override;
 };
 
 

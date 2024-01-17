@@ -38,7 +38,9 @@ public:
 
     virtual void move() = 0;
 
-    virtual void Attack(Entity &entity) = 0;
+    virtual void Attack(Entity &entity, int spellIndex) = 0;
+
+    void die();
 
     const sf::Sprite &getSprite() const;
 
