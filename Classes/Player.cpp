@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player()
-        : Entity() {
+Player::Player(int hp, float movementSpeed)
+        : Entity(hp, movementSpeed) {
     setSprite();
 }
 

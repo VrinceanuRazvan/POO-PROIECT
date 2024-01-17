@@ -1,6 +1,6 @@
 #include "NPC.h"
 
-NPC::NPC() : Entity() {
+NPC::NPC(int hp, float movementSpeed) : Entity(hp, movementSpeed) {
     setSprite();
 }
 

@@ -15,7 +15,7 @@ class Enemy : public Entity {
 
 public:
 
-    Enemy();
+    Enemy(int hp = 100, float movementSpeed = 10);
 
     ~Enemy() override = default;
 

@@ -12,7 +12,7 @@ class Player : public Entity {
     }
 
 public:
-    Player();
+    Player(int hp = 100, float movementSpeed = 10);
 
     ~Player() override = default;
 

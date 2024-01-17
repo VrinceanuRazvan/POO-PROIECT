@@ -1,7 +1,14 @@
 #include "Entity.h"
 
 Entity::Entity(int hp, float movementSpeed)
-        : hp(hp), movementSpeed(movementSpeed) {}
+        : hp(hp), movementSpeed(movementSpeed) {
+
+    if (hp < 0)
+        throw ExceptieHp();
+
+    if (movementSpeed < 0)
+        throw ExceptieMovementSpeed();
+}
 
 const sf::Sprite &Entity::getSprite() const {
     return sprite;

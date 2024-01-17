@@ -8,7 +8,11 @@ Spell::Spell(int damage, std::string type = "", std::string name = "", std::stri
           type(std::move(type)),
           name(std::move(name)),
           description(std::move(
-                  description)) {}
+                  description)) {
+
+    if (damage < 0)
+        throw std::invalid_argument("Spell damage nu pote fi neagtiv");
+}
 
 
 Spell::Spell(const Spell &other) :damage(other.damage),type(other.type),name(other.name),description(other.description){

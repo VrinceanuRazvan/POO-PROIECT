@@ -125,6 +125,8 @@ add_executable(${PROJECT_NAME} main.cpp
         Classes/Entity.h
         Classes/NPC.cpp
         Classes/NPC.h
+        Classes/MyExceptions.cpp
+        Classes/MyExceptions.h
 )
 
 ###############################################################################

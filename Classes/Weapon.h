@@ -8,7 +8,10 @@ class Weapon{
     std::string type;
 public:
 
-    Weapon(float damageMultiplier_ = 0) : damageMultiplier(damageMultiplier_) {}
+    Weapon(float damageMultiplier_ = 1) : damageMultiplier(damageMultiplier_) {
+        if (damageMultiplier < 1)
+            throw std::invalid_argument("Damage multyplayer trebuie sa fie mai amre ca 1 sau egal");
+    }
 
     ~Weapon();
 

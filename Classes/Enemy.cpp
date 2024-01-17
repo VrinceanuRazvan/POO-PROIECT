@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
-        : Entity(), movementCooldown(sf::seconds(1.0f)), timeSinceLastMove(sf::Time::Zero) {
+Enemy::Enemy(int hp, float movementSpeed)
+        : Entity(hp, movementSpeed), movementCooldown(sf::seconds(1.0f)), timeSinceLastMove(sf::Time::Zero) {
     setSprite();
 }
 

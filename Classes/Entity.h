@@ -7,6 +7,7 @@
 #include <random>
 #include <vector>
 #include "Spell.h"
+#include "MyExceptions.h"
 
 class Entity : public sf::Drawable, public sf::Transformable {
 

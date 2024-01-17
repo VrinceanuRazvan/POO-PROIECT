@@ -7,7 +7,7 @@ class NPC : public Entity {
 
 public:
     // Constructor
-    NPC();
+    NPC(int hp = 100, float movementSpeed = 10);
 
     // Destructor
     ~NPC() override = default;
