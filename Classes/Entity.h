@@ -34,8 +34,6 @@ public:
 
     ~Entity() override = default;
 
-    void setSprite();
-
     virtual void move() = 0;
 
     virtual void Attack(Entity &entity, int spellIndex) = 0;

@@ -13,7 +13,9 @@ void Player::move() {
 }
 
 Player::Player()
-        : Entity() {}
+        : Entity() {
+    setSprite();
+}
 
 Player &Player::operator=(const Player &other) {
     name = other.name;
@@ -27,7 +29,7 @@ Player &Player::operator=(const Player &other) {
 }
 
 void Player::Attack(Entity &entity, int spellIndex) {
-    if (spellIndex >= 0 && spellIndex < Spells.size()) {
+    if (spellIndex >= 0 && spellIndex < (int) Spells.size()) {
         Spell playerSpell = Spells[spellIndex];
         std::cout << "Player attacks with " << playerSpell.getName() << std::endl;
 
@@ -44,4 +46,11 @@ void Player::setWeapon(const Weapon &weapon_) {
 
 int Player::getSpellCount() {
     return Spells.size();
+}
+
+void Player::setSprite() {
+    if (!texture.loadFromFile("Assets/Player.png")) {
+        std::cout << "Error loading enemy texture." << std::endl;
+    }
+    sprite.setTexture(texture);
 }

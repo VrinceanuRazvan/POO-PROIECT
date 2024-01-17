@@ -1,7 +1,7 @@
 #include "Entity.h"
 
-Entity::Entity(int hp, float movementSpeed) : hp(hp), movementSpeed(movementSpeed) {
-    setSprite();
+Entity::Entity(int hp, float movementSpeed)
+        : hp(hp), movementSpeed(movementSpeed) {
 }
 
 Entity::Entity(const Entity &other) : sprite(other.sprite), texture(other.texture), name(other.name), hp(other.hp),
@@ -15,13 +15,6 @@ Entity &Entity::operator=(const Entity &other) {
     movementSpeed = other.movementSpeed;
     type = other.type;
     return *this;
-}
-
-void Entity::setSprite() {
-    if (!texture.loadFromFile("Assets/Player.png")) {
-        std::cout << "Erorr";
-    }
-    sprite.setTexture(texture);
 }
 
 const sf::Sprite &Entity::getSprite() const {

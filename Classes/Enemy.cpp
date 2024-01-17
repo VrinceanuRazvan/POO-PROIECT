@@ -1,7 +1,9 @@
 #include "Enemy.h"
 
 Enemy::Enemy()
-        : Entity(), movementCooldown(sf::seconds(1.0f)), timeSinceLastMove(sf::Time::Zero) {}
+        : Entity(), movementCooldown(sf::seconds(1.0f)), timeSinceLastMove(sf::Time::Zero) {
+    setSprite();
+}
 
 /*void Enemy::removeSpell(const Spell &spell_) {
     for (auto it = Spells.begin(); it != Spells.end();) {
@@ -47,6 +49,7 @@ void Enemy::move() {
 }
 
 void Enemy::Attack(Entity &entity, int spellIndex = -1) {
+    std::cout << spellIndex << std::endl;
     std::cout << "Enemy's turn! Selecting a random spell..." << std::endl;
 
     if (!Spells.empty()) {
@@ -60,4 +63,11 @@ void Enemy::Attack(Entity &entity, int spellIndex = -1) {
     } else {
         std::cout << "Enemy has no spells!" << std::endl;
     }
+}
+
+void Enemy::setSprite() {
+    if (!texture.loadFromFile("Assets/Enemy.png")) {
+        std::cout << "Error loading enemy texture." << std::endl;
+    }
+    sprite.setTexture(texture);
 }

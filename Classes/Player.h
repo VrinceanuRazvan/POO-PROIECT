@@ -20,6 +20,8 @@ public:
 
     void move() override;
 
+    void setSprite();
+    
     void Attack(Entity &entity, int spellIndex) override;
 
     void setWeapon(const Weapon &weapon);
