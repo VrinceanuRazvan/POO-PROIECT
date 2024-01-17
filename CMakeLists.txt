@@ -121,6 +121,10 @@ add_executable(${PROJECT_NAME} main.cpp
         Classes/Weapon.h
         Classes/Player.cpp
         Classes/Player.h
+        Classes/Entity.cpp
+        Classes/Entity.h
+        Classes/Entity.cpp
+        Classes/Entity.h
 )
 
 ###############################################################################

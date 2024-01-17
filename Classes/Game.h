@@ -28,12 +28,10 @@ private:
             };
 
     Tileset worldTileset ;
-
     sf::Event ev;
 
-
     Player player;
-    Enemy enemy;
+    std::vector<Enemy> enemies;
 
 public:
 
@@ -49,9 +47,7 @@ public:
 
     void render();
 
-    void startCombat();
-
-    void checkCombatResult();
+    void startCombat(Enemy &enemy);
 };
 
 

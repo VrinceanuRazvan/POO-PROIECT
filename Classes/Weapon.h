@@ -8,14 +8,13 @@ class Weapon{
     std::string type;
 public:
 
-    explicit Weapon(float damageMultiplier_ = 0) : damageMultiplier(damageMultiplier_){}
+    Weapon(float damageMultiplier_ = 0) : damageMultiplier(damageMultiplier_) {}
 
     ~Weapon();
 
     [[nodiscard]] float getDamageMultiplier() const;
 
     //void setType(ElementalType type_);
-
 };
 
 
