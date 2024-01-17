@@ -1,41 +1,41 @@
-#ifndef MY_EXCEPTIONS_H
-#define MY_EXCEPTIONS_H
+#ifndef MYEXCEPTIONS_H
+#define MYEXCEPTIONS_H
 
 #include <stdexcept>
+#include <string>
 
 class MyException : public std::exception {
 public:
     const char *what() const noexcept override;
 };
 
-class CustomError : public MyException {
-private:
-    std::string errorMessage;
-
+class CustomError : public std::exception {
 public:
     explicit CustomError(const std::string &message);
 
     const char *what() const noexcept override;
-};
 
-class AnotherError : public MyException {
-public:
-    const char *what() const noexcept override;
-};
-
-class CriticalError : public MyException {
-public:
-    const char *what() const noexcept override;
-};
-
-class FileError : public MyException {
 private:
-    std::string fileName;
+    std::string errorMessage;
+};
 
+class AnotherError : public std::exception {
+public:
+    const char *what() const noexcept override;
+};
+
+class CriticalError : public std::exception {
+public:
+    const char *what() const noexcept override;
+};
+
+class FileError : public std::exception {
 public:
     explicit FileError(const std::string &file);
-
     const char *what() const noexcept override;
+
+private:
+    std::string fileName;
 };
 
-#endif // MY_EXCEPTIONS_H
+#endif // MYEXCEPTIONS_H
