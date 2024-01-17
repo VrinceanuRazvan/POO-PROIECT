@@ -4,6 +4,12 @@ NPC::NPC() : Entity() {
     setSprite();
 }
 
+NPC::NPC(const NPC &other) : Entity(other) {}
+
+NPC *NPC::clone() const {
+    return new NPC(*this);
+}
+
 void NPC::move() {
     //Nu vreau sa se miste
 }
@@ -36,6 +42,4 @@ NPC &NPC::operator=(const NPC &other) {
     return *this;
 }
 
-NPC *NPC::clone() const {
-    return new NPC(*this);
-}
+

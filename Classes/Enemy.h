@@ -21,6 +21,8 @@ public:
 
     Enemy *clone() const override;
 
+    Enemy(const Enemy &other);
+
     void move() override;
 
     void setSprite();

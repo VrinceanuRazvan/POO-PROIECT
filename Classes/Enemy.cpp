@@ -5,18 +5,11 @@ Enemy::Enemy()
     setSprite();
 }
 
-/*void Enemy::removeSpell(const Spell &spell_) {
-    for (auto it = Spells.begin(); it != Spells.end();) {
-        if(*it == spell_){
-            it = Spells.erase(it);
-            break;
-        }
-    }
+Enemy *Enemy::clone() const {
+    return new Enemy(*this);
 }
 
-void Enemy::addSpell(const Spell &spell_) {
-    Enemy::Spells.push_back(spell_);
-}*/
+Enemy::Enemy(const Enemy &other) : Entity(other), movementCooldown(other.movementCooldown) {}
 
 void Enemy::move() {
     // Check if enough time has passed since the last move
@@ -72,6 +65,15 @@ void Enemy::setSprite() {
     sprite.setTexture(texture);
 }
 
-Enemy *Enemy::clone() const {
-    return new Enemy(*this);
+/*void Enemy::removeSpell(const Spell &spell_) {
+    for (auto it = Spells.begin(); it != Spells.end();) {
+        if(*it == spell_){
+            it = Spells.erase(it);
+            break;
+        }
+    }
 }
+
+void Enemy::addSpell(const Spell &spell_) {
+    Enemy::Spells.push_back(spell_);
+}*/

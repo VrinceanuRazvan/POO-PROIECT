@@ -12,6 +12,8 @@ public:
     // Destructor
     ~NPC() override = default;
 
+    NPC(const NPC &other);
+
     NPC &operator=(const NPC &other);
 
     NPC *clone() const override;

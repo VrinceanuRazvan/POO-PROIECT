@@ -137,16 +137,10 @@ void Game::render() {
 }
 
 void Game::startCombat(Enemy &enemy) {
-    Enemy *currentEnemy = &enemy;
 
-    // Display combat message or UI
-    std::cout << "Combat Started with Enemy!" << std::endl;
-
-    while (player.getHp() > 0 && currentEnemy->getHp() > 0) {
-        // Player's turn
+    while (player.getHp() > 0 && enemy.getHp() > 0) {
         int selectedSpell = -1;
         while (selectedSpell == -1) {
-            // Get the selected spell from the player
             for (size_t i = 0; i < spellButtons.size(); ++i) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
@@ -158,36 +152,20 @@ void Game::startCombat(Enemy &enemy) {
                 }
             }
         }
-        player.Attack(*currentEnemy, selectedSpell);
+        player.Attack(enemy, selectedSpell);
 
-        // Check if the enemy is defeated
-        if (currentEnemy->getHp() <= 0) {
+        if (enemy.getHp() <= 0) {
             std::cout << "Enemy has been defeated! Player wins!" << std::endl;
             break;
         }
 
-        // Enemy's turn
-        currentEnemy->Attack(player, -1);
+        enemy.Attack(player, -1);
 
-        // Check if the player is defeated
         if (player.getHp() <= 0) {
             std::cout << "Player has been defeated! Enemy wins!" << std::endl;
             break;
         }
     }
 
-    // Reset currentEnemy after combat
-    currentEnemy = nullptr;
     inCombat = false;
 }
-
-
-/*void Game::checkCombatResult() {
-    if (player.getHp() <= 0 && enemy.getHp() <= 0) {
-        std::cout << "It's a draw! Both player and enemy have been defeated." << std::endl;
-    } else if (player.getHp() <= 0) {
-        std::cout << "Player has been defeated! Enemy wins!" << std::endl;
-    } else if (enemy.getHp() <= 0) {
-        std::cout << "Enemy has been defeated! Player wins!" << std::endl;
-    }
-}*/

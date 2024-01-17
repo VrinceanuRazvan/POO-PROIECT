@@ -1,21 +1,15 @@
 #include "Player.h"
 
-
-void Player::move() {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        this->sprite.move(0, -(float) movementSpeed);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        this->sprite.move(0, (float) movementSpeed);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        this->sprite.move((float) movementSpeed, 0);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        this->sprite.move(-(float) movementSpeed, 0);
-}
-
 Player::Player()
         : Entity() {
     setSprite();
 }
+
+Player *Player::clone() const {
+    return new Player(*this);
+}
+
+Player::Player(const Player &other) : Entity(other), weapon(other.weapon) {}
 
 Player &Player::operator=(const Player other) {
     name = other.name;
@@ -26,6 +20,17 @@ Player &Player::operator=(const Player other) {
     type = other.type;
     weapon = other.weapon;
     return *this;
+}
+
+void Player::move() {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        this->sprite.move(0, -(float) movementSpeed);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        this->sprite.move(0, (float) movementSpeed);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        this->sprite.move((float) movementSpeed, 0);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        this->sprite.move(-(float) movementSpeed, 0);
 }
 
 void Player::Attack(Entity &entity, int spellIndex) {
@@ -60,8 +65,4 @@ void swap(Player &p1, Player &p2) {
 
     using std::swap;
     swap(p1.weapon, p2.weapon);
-}
-
-Player *Player::clone() const {
-    return new Player(*this);
 }

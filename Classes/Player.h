@@ -18,6 +18,8 @@ public:
 
     Player &operator=(const Player other);
 
+    Player(const Player &other);
+
     Player *clone() const override;
 
     void move() override;
