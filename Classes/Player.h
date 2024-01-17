@@ -16,7 +16,7 @@ public:
 
     ~Player() override = default;
 
-    Player &operator=(const Player other);
+    Player &operator=(const Player &other);
 
     Player(const Player &other);
 

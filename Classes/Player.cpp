@@ -11,7 +11,7 @@ Player *Player::clone() const {
 
 Player::Player(const Player &other) : Entity(other), weapon(other.weapon) {}
 
-Player &Player::operator=(const Player other) {
+Player &Player::operator=(const Player &other) {
     name = other.name;
     sprite = other.sprite;
     texture = other.texture;
