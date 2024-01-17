@@ -19,6 +19,8 @@ public:
 
     ~Enemy() override = default;
 
+    Enemy *clone() const override;
+
     void move() override;
 
     void setSprite();

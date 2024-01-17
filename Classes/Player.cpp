@@ -17,7 +17,7 @@ Player::Player()
     setSprite();
 }
 
-Player &Player::operator=(const Player &other) {
+Player &Player::operator=(const Player other) {
     name = other.name;
     sprite = other.sprite;
     texture = other.texture;
@@ -53,4 +53,15 @@ void Player::setSprite() {
         std::cout << "Error loading enemy texture." << std::endl;
     }
     sprite.setTexture(texture);
+}
+
+void swap(Player &p1, Player &p2) {
+    swap(static_cast<Entity &>(p1), static_cast<Entity &>(p2));
+
+    using std::swap;
+    swap(p1.weapon, p2.weapon);
+}
+
+Player *Player::clone() const {
+    return new Player(*this);
 }

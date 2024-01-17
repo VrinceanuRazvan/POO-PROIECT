@@ -12,6 +12,10 @@ public:
     // Destructor
     ~NPC() override = default;
 
+    NPC &operator=(const NPC &other);
+
+    NPC *clone() const override;
+
     void move() override;
 
     void setSprite();

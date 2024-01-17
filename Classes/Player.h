@@ -16,7 +16,9 @@ public:
 
     ~Player() override = default;
 
-    Player &operator=(const Player &other);
+    Player &operator=(const Player other);
+
+    Player *clone() const override;
 
     void move() override;
 
@@ -30,6 +32,8 @@ public:
         os << "Nume: " << player_.name << " HP: " << player_.hp;
         return os;
     }
+
+    friend void swap(Player &st1, Player &st2);
 
     int getSpellCount();
 };

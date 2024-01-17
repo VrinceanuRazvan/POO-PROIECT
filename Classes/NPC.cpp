@@ -29,3 +29,13 @@ void NPC::setSprite() {
     }
     sprite.setTexture(texture);
 }
+
+NPC &NPC::operator=(const NPC &other) {
+    NPC temp(other);
+    swap(*this, temp);
+    return *this;
+}
+
+NPC *NPC::clone() const {
+    return new NPC(*this);
+}

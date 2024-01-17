@@ -28,11 +28,13 @@ public:
 
     explicit Entity(int hp = 100, float movementSpeed = 10);
 
+    ~Entity() override = default;
+
+    virtual Entity *clone() const = 0;
+
     Entity(const Entity &other);
 
     Entity &operator=(const Entity &other);
-
-    ~Entity() override = default;
 
     virtual void move() = 0;
 
@@ -51,6 +53,8 @@ public:
     int getHp() const;
 
     //void setHp(int _hp);
+
+    friend void swap(Entity &first, Entity &second) noexcept;
 };
 
 #endif //OOP_ENTITY_H

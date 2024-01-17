@@ -1,5 +1,4 @@
 #include "Classes/Game.h"
-#include "Classes/MyExceptions.h"
 
 #ifdef __linux__
 #include <X11/Xlib.h>

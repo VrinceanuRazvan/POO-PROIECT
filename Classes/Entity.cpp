@@ -1,25 +1,14 @@
 #include "Entity.h"
 
 Entity::Entity(int hp, float movementSpeed)
-        : hp(hp), movementSpeed(movementSpeed) {
-}
-
-Entity::Entity(const Entity &other) : sprite(other.sprite), texture(other.texture), name(other.name), hp(other.hp),
-                                      movementSpeed(other.movementSpeed), type(other.type) {}
-
-Entity &Entity::operator=(const Entity &other) {
-    name = other.name;
-    sprite = other.sprite;
-    texture = other.texture;
-    hp = other.hp;
-    movementSpeed = other.movementSpeed;
-    type = other.type;
-    return *this;
-}
+        : hp(hp), movementSpeed(movementSpeed) {}
 
 const sf::Sprite &Entity::getSprite() const {
     return sprite;
 }
+
+Entity::Entity(const Entity &other) : sprite(other.sprite), texture(other.texture), name(other.name), hp(other.hp),
+                                      movementSpeed(other.movementSpeed), type(other.type) {}
 
 void Entity::GetSpellSet(const std::string &filename, int n) {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -64,3 +53,23 @@ void Entity::takeDamage(int _damage) {
 /*void Entity::die() {
     delete this;
 }*/
+
+void swap(Entity &first, Entity &second) noexcept {
+    using std::swap;
+    swap(first.sprite, second.sprite);
+    swap(first.texture, second.texture);
+    swap(first.name, second.name);
+    swap(first.hp, second.hp);
+    swap(first.movementSpeed, second.movementSpeed);
+    swap(first.type, second.type);
+    swap(first.Spells, second.Spells);
+}
+
+Entity &Entity::operator=(const Entity &other) {
+    if (this != &other) {
+        Entity *temp = other.clone();
+        swap(*this, *temp);
+        delete temp;
+    }
+    return *this;
+}
