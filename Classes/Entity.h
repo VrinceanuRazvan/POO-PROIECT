@@ -38,7 +38,7 @@ public:
 
     virtual void Attack(Entity &entity, int spellIndex) = 0;
 
-    void die();
+    //void die();
 
     const sf::Sprite &getSprite() const;
 
@@ -50,7 +50,7 @@ public:
 
     int getHp() const;
 
-    void setHp(int _hp);
+    //void setHp(int _hp);
 };
 
 #endif //OOP_ENTITY_H

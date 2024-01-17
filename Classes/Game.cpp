@@ -2,7 +2,7 @@
 ///Constructor Deconstractor
 
 Game::Game() {
-    Weapon DefaultWeapon(1.2);
+    Weapon DefaultWeapon((float) 1.2);
 
     player.setWeapon(DefaultWeapon);
 

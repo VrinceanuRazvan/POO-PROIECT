@@ -51,9 +51,9 @@ int Entity::getHp() const {
     return hp;
 }
 
-void Entity::setHp(int _hp) {
+/*void Entity::setHp(int _hp) {
     this->hp = _hp;
-}
+}*/
 
 void Entity::takeDamage(int _damage) {
     if (_damage >= 0) {
@@ -61,6 +61,6 @@ void Entity::takeDamage(int _damage) {
     }
 }
 
-void Entity::die() {
+/*void Entity::die() {
     delete this;
-}
+}*/
