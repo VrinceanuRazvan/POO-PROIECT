@@ -123,13 +123,10 @@ add_executable(${PROJECT_NAME} main.cpp
         Classes/Player.h
         Classes/Entity.cpp
         Classes/Entity.h
-        Classes/Entity.cpp
-        Classes/Entity.h
         Classes/NPC.cpp
         Classes/NPC.h
-        Classes/NPC.h
-        Classes/NPC.cpp
-        Classes/NPC.h
+        Classes/MyExceptions.cpp
+        Classes/MyExceptions.h
 )
 
 ###############################################################################
